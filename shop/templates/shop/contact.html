@@ -1,0 +1,112 @@
+{% extends "shop/basic.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block css %}
+
+
+.form{margin:20px;}
+.form-control{width:400px;}
+container{border:5px red solid;}
+.contact{margin-top:100px;
+margin-left:150px;}
+.contact h2{font-family: 'Montserrat', sans-serif;
+}
+.contact p{font-size:13px;
+font-family: 'Montserrat', sans-serif;
+}
+.media a{
+font-size:20px;
+height:40px;
+width:40px;
+line-height:40px;
+border-radius:50%;
+background-color: rgba(255,255,255,0.2);
+margin:0 10px 10px 0;
+color:black;
+transition: all 0.5s ease;
+}
+.media a:hover{padding-left: 8px;}
+.facebook a:hover{
+color:blue;}
+.insta a:hover{
+color:red;
+}
+.linkdin a:hover{
+color: darkblue;
+}
+.twiter a:hover{
+color:#00a4e4;
+}
+
+
+{% endblock %}
+{% block body %}
+<div id="start">
+
+		<h1>Contact Us</h1>
+
+
+</div>
+<!--FORM-->
+<div class="row">
+	<div class="col-sm-4">
+		<div class="container contact">
+			<h2>Get In Touch</h2>
+			<p class="py-3">Head Office Address:<br><br>
+				Muzaffarnagar,<br>Uttar Pradesh ,INDIA<br><br>
+				<i class="fas fa-phone-volume"></i> Phone: 9568134802.<br>
+				<i class="fas fa-envelope-open-text"></i> Email: harshaggarwal334435@gmail.com
+			</p>
+			<div class="social">
+				<div class="row">
+					<div class="col-md-1 media facebook">
+						<a href=""><i class="fab fa-facebook"></i></a>
+					</div>
+					<div class="col-md-1 media insta">
+						<a href=""><i class="fab fa-instagram-square"></i></a>
+
+					</div>
+					<div class="col-md-1 media linkdin">
+						<a href=""><i class="fab fa-linkedin"></i></a>
+					</div>
+					<div class="col-md-1 media twiter">
+						<a href=""><i class="fab fa-twitter-square"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="container">
+			<br>
+			<h2>Contact here</h2>
+			<form action="/shop/detail" method="post"> {% csrf_token %}
+				<div class="form-group form">
+					<label for="exampleInputname">Name</label>
+					<input type="text" class="form-control" name="name" id="exampleInputname"
+						aria-describedby="emailHelp" placeholder="Enter your name here">
+				</div>
+				<div class="form-group form">
+					<label for="exampleInputEmail1">Email address</label>
+					<input type="email" class="form-control" id="exampleInputEmail1" name="email"
+						aria-describedby="emailHelp" placeholder="Enter your email here">
+				</div>
+				<div class="form-group form">
+					<label for="exampleInputPhone">Pnone No</label>
+					<input type="number" class="form-control" name="phone" id="exampleInputphone"
+						aria-describedby="emailHelp" placeholder="Enter your Phone no here">
+				</div>
+				<div class="form-group form">
+					<label for="exampleFormControlTextarea1">Your Message</label>
+					<textarea class="form-control" id="exampleFormControlTextarea1" name="query" rows="3"></textarea>
+				</div>
+
+
+				<button type="submit" class="btn btn-primary form" name="submit">Submit</button>
+			</form>
+		</div>
+	</div>
+	<div class="col-sm-3">
+	</div>
+</div>
+<!--FORM END-->
+{% endblock %}

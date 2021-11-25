@@ -1,0 +1,208 @@
+{% extends 'shop/basic.html' %}
+{% block css %}
+
+
+
+
+
+.first-slide{margin-left:7.5%;
+margin-top:2%;
+margin-bottom:2%}
+.own{display: inline-block;
+width: 100%;
+height: auto;
+}
+.own img{width: 100%;
+height:300px;}
+.card{ min-height:300px;}
+
+
+@media (max-width: 858px){
+.own{display: inline-flex;
+width: 100%;
+height: auto;
+}
+.first-slide{margin-left:20%;
+margin-top:2%;
+margin-bottom:2%}
+
+}
+
+    #service {
+    background: var(--thm-f6);
+
+}
+.atf-section-padding {
+    padding: 90px 0;}
+    .shipping-media i{font-size:40px;
+    color:white;}
+    .shipping-block{padding:50px;
+
+    background-color:lightskyblue;}
+    .pre-button{margin-right:50px;}
+    .next-button{margin-left:150px;
+                 color:blue;}
+
+{% endblock %}
+{% block title %}Home/shop{% endblock %}
+{% load static %}
+
+{% block slider %}
+<!--Slider-->
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'shop/s11.jpg' %}" height="450px" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'shop/s2.jpg' %}" height="450px" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'shop/s3.jpg' %}" height="450px" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+{% endblock %}
+{% block body %}
+
+
+    <section class="container py-5">
+        <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Categories of The Month</h1>
+                <p>
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="/shop/mobile"><img src="http://127.0.0.1:8000/media/shop/images/71ZOtNdaZCL._SL1500_.jpg" class="rounded-circle img-fluid border"></a>
+                <h5 class="text-center mt-3 mb-3">Mobile</h5>
+                <p class="text-center"><a class="btn btn-success" href="/shop/mobile">Go Shop</a></p>
+            </div>
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="/shop/laptop"><img src="http://127.0.0.1:8000/media/shop/images/61E8IwFfGrS._SL1200_.jpg" class="rounded-circle img-fluid border"></a>
+                <h2 class="h5 text-center mt-3 mb-3">Laptop</h2>
+                <p class="text-center"><a class="btn btn-success" href="/shop/laptop">Go Shop</a></p>
+            </div>
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="/shop/Accessories"><img src="http://127.0.0.1:8000/media/shop/images/61e9td4-rjL._SL1500_.jpg" class="rounded-circle img-fluid border"></a>
+                <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
+                <p class="text-center"><a class="btn btn-success" href="/shop/Accessories">Go Shop</a></p>
+            </div>
+        </div>
+    </section>
+<!--CARD-->
+{% for product,range,nSlides in allProds %}
+<h3 class="my-4 first-slide"> All Available Products</h3>
+<div id="carouselExampleControls{{ forloop.counter }}" class="carousel slide"
+    data-bs-ride="carousel{{ forloop.counter }}">
+    <div class="carousel-inner">
+        <div class="carousel-item active first-slide">
+
+            {% for i in product %}
+            <div class="card own" style="width:18rem;">
+                <img src="/media/{{ i.image }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" id="namepr{{i.product_id}}">{{ i.product_name }}</h5>
+                    <p class="card-text">{{ i.product_desc }}</p>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h5 class="card-text"><i class="fas fa-rupee-sign"></i>{{ i.price }}</h5>
+                            </div>
+                            <div class="col-7">
+                                 <span id="divpr{{ i.product_id }}" class="divpr">
+                        <button id= "pr{{i.product_id}}" class="btn btn-primary cart">Add To Cart</button>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last%}
+        </div>
+        <div class="carousel-item first-slide ">
+            {% endif %}
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev pre-button" type="button" data-bs-target="#carouselExampleControls{{ forloop.counter }}"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon pre-button" aria-hidden="false"></span>
+        <span class="visually-hidden mx-3">Previous</span>
+    </button>
+    <button class="carousel-control-next next-button" type="button" data-bs-target="#carouselExampleControls{{ forloop.counter }}"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon next-button" aria-hidden="true"></span>
+        <span class="visually-hidden ">Next</span>
+    </button>
+    {% endfor %}
+</div>
+    <!--card end-->
+    <!--Support-->
+    <section id="service" class="atf-service-area atf-section-padding">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-4 col-md-6 shipping-block">
+							<div class="atf-single-service-wrap text-center">
+								<div class="atf-single-service-wrap">
+									<div class="atf-services-icon text-center mb-4 shipping-media">
+                                        <i class="fas fa-shipping-fast"></i>
+									</div>
+									<div class="atf-service-content">
+										<h3>Free Shipping</h3>
+										<p>Shop Now is Offering You Free Shipping For all kind of Products</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4 col-md-6 shipping-block">
+							<div class="atf-single-service-wrap text-center">
+								<div class="atf-single-service-wrap">
+									<div class="atf-services-icon text-center mb-4 shipping-media">
+										<i class="fas fa-envelope-open-text"></i>
+									</div>
+									<div class="atf-service-content">
+										<h3>24/7 support</h3>
+										<p> Any query or issue that you may possibly have while shopping on Show Now is taken care here.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4 col-md-6 shipping-block">
+							<div class="atf-single-service-wrap text-center">
+								<div class="atf-single-service-wrap">
+									<div class="atf-services-icon text-center mb-4 shipping-media">
+										<i class="fas fa-money-bill-alt"></i>
+									</div>
+									<div class="atf-service-content">
+										<h3>Secure Payment</h3>
+										<p>We are offering you multiple payment methods.you can choose according to your Convenience.
+                                            </p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+{% endblock %}
+{% block js %}
+
+{% endblock%}
